@@ -26,6 +26,7 @@ class BadgeSerializer(serializers.ModelSerializer):
         fields = (
             'badgeId',
             'name',
+            'image',
         )
 
 class PersonBadgeSerializer(serializers.ModelSerializer):

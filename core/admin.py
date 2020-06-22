@@ -1,11 +1,19 @@
 from django.contrib import admin
+from django.utils.html import format_html
 
 from core.models import *
 
 @admin.register(Badge)
 class BadgeAdmin(admin.ModelAdmin):
-    fields=('badgeId', 'archived',)
-    list_display=('badgeId', 'archived', 'created_at', 'updated_at',)
+    fields=('badgeId', 'image_tag', 'archived', 'image',)
+    list_display=('badgeId', 'image_tag', 'archived', 'created_at', 'updated_at',)
+    readonly_fields = ('image_tag',)
+
+    def image_tag(self, obj):
+        if obj.image:
+            return format_html('<img src="{}" height="150px" />'.format(obj.image.url))
+        else:
+            return 'No Image'
 
 @admin.register(Session)
 class SessionAdmin(admin.ModelAdmin):

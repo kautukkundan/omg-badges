@@ -16,6 +16,7 @@ class BaseModel(models.Model):
 class Badge(BaseModel):
     badgeId = models.CharField(max_length=10, null=False, blank=False, primary_key=True)
     name    = models.CharField(max_length=150, null=False, blank=False)
+    image   = models.ImageField(upload_to='badge/', null=True)
 
     def __str__(self):
         return self.badgeId
