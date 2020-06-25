@@ -25,12 +25,12 @@ SECRET_KEY = 'oso$_)+g=+==48pgvz7(iqii49++_01$i&fm-85^%uiy%j(idb'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['134.209.150.112', 'badges.dscomg.com']
+ALLOWED_HOSTS = ['localhost', '134.209.150.112', 'badges.dscomg.com',]
 #CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:8080',
-    'https://dscomg.com'
+    'https://dscomg.com',
 ]
 
 # Application definition

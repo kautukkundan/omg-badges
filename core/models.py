@@ -24,10 +24,10 @@ class Badge(BaseModel):
 
 class Session(BaseModel):
     STACK = [
-	("team1", "team1"),
-	("team2", "team2"),
-	("mobile", "mobile"),
-	("devops", "devops"),
+        ("team1", "team1"),
+        ("team2", "team2"),
+        ("mobile", "mobile"),
+        ("devops", "devops"),
         ("android", "android"),
         ("cloud", "cloud"),
         ("web", "web"),
@@ -42,7 +42,7 @@ class Session(BaseModel):
 
     sessionId = models.CharField(max_length=10, null=False, blank=False, primary_key=True)
     name      = models.CharField(max_length=150, null=False, blank=False)
-    stack     = models.CharField(max_length=10, choices=STACK, null=True, blank=True)
+    stack     = models.CharField(max_length=10, null=True, blank=True)
 
     def __str__(self):
         return self.sessionId

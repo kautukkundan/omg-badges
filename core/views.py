@@ -55,8 +55,8 @@ class MarkPresenceForSession(APIView):
                 return Response({'success': 'User registered!', 'badgeEarned': True}, status=status.HTTP_201_CREATED)
             return Response({'success': 'User registered!', 'badgeEarned': False}, status=status.HTTP_201_CREATED)
 
-        sessionCount = obj.session.all().count()
-        if (sessionCount == 2):
+        sessionCount = obj.session.filter(sessionId__iregex='^D[1-9]S[1-9]').count()
+        if (sessionCount == 1):
             badgeEarned = grantBadge('session1', email)
         elif (sessionCount == 5):
             badgeEarned = grantBadge('session5', email)
