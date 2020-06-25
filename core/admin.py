@@ -5,8 +5,8 @@ from core.models import *
 
 @admin.register(Badge)
 class BadgeAdmin(admin.ModelAdmin):
-    fields=('badgeId', 'image_tag', 'archived', 'image',)
-    list_display=('badgeId', 'image_tag', 'archived', 'created_at', 'updated_at',)
+    fields=('badgeId', 'name', 'image_tag', 'archived', 'image',)
+    list_display=('badgeId', 'name', 'image_tag', 'archived', 'created_at', 'updated_at',)
     readonly_fields = ('image_tag',)
 
     def image_tag(self, obj):
@@ -17,8 +17,8 @@ class BadgeAdmin(admin.ModelAdmin):
 
 @admin.register(Session)
 class SessionAdmin(admin.ModelAdmin):
-    fields=('sessionId', 'archived',)
-    list_display=('sessionId', 'archived', 'created_at', 'updated_at',)
+    fields=('sessionId', 'name', 'stack', 'archived',)
+    list_display=('sessionId', 'name', 'stack', 'archived', 'created_at', 'updated_at',)
 
 @admin.register(PersonBadge)
 class PersonBadgeAdmin(admin.ModelAdmin):
