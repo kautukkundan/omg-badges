@@ -44,3 +44,9 @@ class PersonBadgeSerializer(serializers.ModelSerializer):
         )
 
 
+class EmailUIDSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EmailUID
+        fields = (
+            'email',
+        )

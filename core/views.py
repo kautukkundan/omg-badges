@@ -10,10 +10,46 @@ from core.models import *
 class RetrieveBadgesForEmail(APIView):
     def get(self, request, format=None):
         email = request.query_params.get('email')
-        data = get_list_or_404(PersonBadge, pk=email)
 
-        serializer = PersonBadgeSerializer(data, many=True)
-        return Response(serializer.data[0])
+        try:
+            data = get_list_or_404(PersonBadge, pk=email)
+            serializer = PersonBadgeSerializer(data, many=True)
+
+            try:
+                uuid = get_object_or_404(EmailUID, email=email)
+            except Http404:
+                uidserializer = EmailUIDSerializer(EmailUID(), data={'email': email})
+                if uidserializer.is_valid():
+                    uidserializer.save()
+            
+            get_uuid = get_object_or_404(EmailUID, email=email)
+            response_obj = serializer.data[0]
+            response_obj['uuid'] = get_uuid.id
+
+            return Response(response_obj)
+
+        except Http404:
+            return Response({'error': 'user does not exist'}, status=status.HTTP_404_NOT_FOUND)
+
+class RetrieveBadgesForPublic(APIView):
+    def get(self, request, uid, format=None):
+        try:
+            obj = get_object_or_404(EmailUID, pk=uid)
+
+            data = get_list_or_404(PersonBadge, pk=obj.email)
+            serializer = PersonBadgeSerializer(data, many=True)
+
+            response_obj = serializer.data[0]
+            
+            email = response_obj['email']
+            split = email.split('@')
+            joined = split[0][:3]+"*****@" + split[1]
+            response_obj['email'] = joined
+            
+            return Response(response_obj)
+
+        except Http404:
+            return Response({'error': 'user does not exist'}, status=status.HTTP_404_NOT_FOUND)
 
 class MarkPresenceForSession(APIView):
     def post(self, request):

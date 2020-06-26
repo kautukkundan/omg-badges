@@ -9,6 +9,7 @@ from core.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/badges/', RetrieveBadgesForEmail.as_view()),
+    path('api/collection/<str:uid>/', RetrieveBadgesForPublic.as_view()),
     path('api/session/', MarkPresenceForSession.as_view()),
 ]
 

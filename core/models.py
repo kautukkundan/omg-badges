@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 
 class BaseModel(models.Model):
     archived   = models.BooleanField(default=False)
@@ -62,3 +63,8 @@ class PersonSession(BaseModel):
 
     def __str__(self):
         return self.email
+
+
+class EmailUID(BaseModel):
+    id    = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    email = models.CharField(max_length=150, null=False, blank=False)

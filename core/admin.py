@@ -29,3 +29,9 @@ class PersonBadgeAdmin(admin.ModelAdmin):
 class PersonSessionAdmin(admin.ModelAdmin):
     fields=('archived', 'session', 'email',)
     list_display=('email', 'archived', 'created_at', 'updated_at',)
+
+
+@admin.register(EmailUID)
+class EmailUIDAdmin(admin.ModelAdmin):
+    fields=('archived', 'email',)
+    list_display=('id', 'email', 'created_at', 'updated_at',)
