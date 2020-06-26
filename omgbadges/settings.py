@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'oso$_)+g=+==48pgvz7(iqii49++_01$i&fm-85^%uiy%j(idb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '134.209.150.112', 'badges.dscomg.com',]
 #CORS_ORIGIN_ALLOW_ALL = True
@@ -86,23 +86,23 @@ WSGI_APPLICATION = 'omgbadges.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-   'default': {
-       'ENGINE': 'django.db.backends.sqlite3',
-       'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-   }
-}
-
 # DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'omgbadges',
-#         'USER': 'omgbadgesuser',
-#         'PASSWORD': 'omgpassword',
-#         'HOST': 'localhost',
-#         'PORT': '',
-#     }
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#    }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'omgbadges',
+        'USER': 'omgbadgesuser',
+        'PASSWORD': 'omgpassword',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
 
 
 # Password validation
