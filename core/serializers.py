@@ -11,6 +11,13 @@ class PersonSessionSerializer(serializers.ModelSerializer):
         )
 
 
+class EmailOnlySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PersonBadge
+        fields = (
+            'email',
+        )
+
 class PersonBadgeGrantSerializer(serializers.ModelSerializer):
     class Meta:
         model = PersonBadge
@@ -49,4 +56,13 @@ class EmailUIDSerializer(serializers.ModelSerializer):
         model = EmailUID
         fields = (
             'email',
+        )
+
+
+class EmailUIDSerializerB(serializers.ModelSerializer):
+    class Meta:
+        model = EmailUID
+        fields = (
+            'email',
+            'id'
         )

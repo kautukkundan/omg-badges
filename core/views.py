@@ -3,9 +3,19 @@ from django.shortcuts import get_list_or_404, get_object_or_404
 from rest_framework.response import Response
 from django.http.response import Http404
 from rest_framework import status
+from rest_framework import generics
 
 from core.serializers import *
 from core.models import *
+
+
+class EmailList(generics.ListCreateAPIView):
+    queryset = PersonBadge.objects.all()
+    serializer_class = EmailOnlySerializer
+
+class EmailListUUID(generics.ListCreateAPIView):
+    queryset = EmailUID.objects.all()
+    serializer_class = EmailUIDSerializerB
 
 class RetrieveBadgesForEmail(APIView):
     def get(self, request, format=None):
