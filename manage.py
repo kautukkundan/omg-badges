@@ -2,10 +2,14 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-
+from decouple import config
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'omgbadges.settings')
+    if config('PRODUCTION', cast=bool):
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'omgbadges.settings.production')
+    else:
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'omgbadges.settings.development')
+    
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

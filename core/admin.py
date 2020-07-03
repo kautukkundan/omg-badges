@@ -17,8 +17,8 @@ class BadgeAdmin(admin.ModelAdmin):
 
 @admin.register(Session)
 class SessionAdmin(admin.ModelAdmin):
-    fields=('sessionId', 'name', 'stack', 'archived',)
-    list_display=('sessionId', 'name', 'stack', 'archived', 'created_at', 'updated_at',)
+    fields=('sessionId', 'name', 'badge', 'archived',)
+    list_display=('sessionId', 'name', 'badge', 'archived', 'created_at', 'updated_at',)
 
 @admin.register(PersonBadge)
 class PersonBadgeAdmin(admin.ModelAdmin):
