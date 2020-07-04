@@ -23,6 +23,13 @@ Documentation is hard. I have tried my best to list everything in detail but ple
       - [Adding sessions](#adding-sessions)
       - [Adding Count Special Badges](#adding-count-special-badges)
     - [API Reference](#api-reference)
+      - [Exchanging Access Token](#exchanging-access-token)
+      - [Marking Attendance in a session](#marking-attendance-in-a-session)
+      - [Fetching Sessions of a user](#fetching-sessions-of-a-user)
+      - [Granting Individual Badges](#granting-individual-badges)
+      - [GFetching Badges of a user](#gfetching-badges-of-a-user)
+      - [Fetching Badges using Public profile](#fetching-badges-using-public-profile)
+    - [Deployement](#deployement)
 
 
 ### Getting Started
@@ -121,3 +128,54 @@ eg- Attended 5 sessions, Attended 20 sessions.
 5. select associated badge
 
 ### API Reference
+
+#### Exchanging Access Token
+```http
+POST /api/auth/convert-token
+```
+
+| Parameter | Type | Value | Description |
+| :--- | :--- | :--- | :---- |
+| `grant_type` | `string` | `convert_token` | **Required** as it is|
+| `client_id` | `string` | `<Django Oauth Client ID>` | **Required** Copied previously |
+| `backend` | `string` | `google-oauth2` | **Required** as it is |
+| `token` | `string` | `<Google Auth Access Token>` | **Required** Obtained when client side signin using GOauth2 API |
+
+example:
+```javascript
+{
+    "grant_type": "convert_token",
+    "client_id": "hse8AgZkiHdVcGGtVRB3sbuW4w4DM46UA78fI50P",
+    "backend": "google-oauth2",
+    "token": "ya29.a0AfH6SMDnFAX_ZKMJNzv4CmVbQbWYCp6PLavVdfOzaJEGHjAaoOxN86UUXLyic_a1ZMJRqVJxd1t5IkGjdVPlnZxwWPJUrRF2TujZISkwDV2iFQtzsEfUMYsdcWt0hJ8Pk1wvNugf-QwZs0jUlg8rdgp_PYCcMyI_7R4"
+}
+```
+
+**Response**
+```javascript
+{
+    "access_token": "Jd4hNC3qjljlzTBMSkdf97x0iOy5Fu",
+    "expires_in": 36000,
+    "token_type": "Bearer",
+    "scope": "read write",
+    "refresh_token": "Fcp6VflwUrrX65gxJ0qKnfxgYa1Q6a"
+}
+```
+
+Save the access_token at the client and use the access token in the header for each authorized request. 
+**Note**
+You will receive a new access_token EACH TIME you login on the client and send request to this API. Make sure to overwrite the access_token with the fresh one every time. Or use the refresh token to get a new token after expiration. Feel free to send a PR to this documentation explaining that. 
+
+#### Marking Attendance in a session 
+
+#### Fetching Sessions of a user 
+
+#### Granting Individual Badges
+
+#### GFetching Badges of a user 
+
+#### Fetching Badges using Public profile 
+
+
+### Deployement 
+This application was deployed on DigitalOcean for use during our event. You can follow [this article](https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-16-04) for setup and deployments, this should work the same for any cloud service. 
