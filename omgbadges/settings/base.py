@@ -20,11 +20,17 @@ INSTALLED_APPS = [
 
     # addons
     'rest_framework',
-    'rest_framework.authtoken',
     'corsheaders',
+
+    'oauth2_provider',
+    'social_django',
+    'rest_framework_social_oauth2',
+
+    'admin_reorder',
 ]
 
 MIDDLEWARE = [
+    'admin_reorder.middleware.ModelAdminReorder',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -72,9 +78,37 @@ AUTH_PASSWORD_VALIDATORS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
     ]
 }
+
+AUTHENTICATION_BACKENDS = (
+    # Google OAuth2
+    'social_core.backends.google.GoogleOAuth2',
+
+    # django-rest-framework-social-oauth2
+    'rest_framework_social_oauth2.backends.DjangoOAuth2',
+
+    # Django
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+# Google configuration
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('GOOGLE_OAUTH2_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('GOOGLE_OAUTH2_SECRET')
+
+# Define SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE to get extra permissions from Google.
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
+    'https://www.googleapis.com/auth/userinfo.email',
+    'https://www.googleapis.com/auth/userinfo.profile',
+]
+
+ADMIN_REORDER = (
+    {'app': 'core', 'models': ('auth.User', 'core.Profile',)},
+    {'app': 'badges', 'models': ('badges.Badge', 'badges.PersonBadge',)},
+    {'app': 'events', 'models': ('events.Session', 'events.PersonSession', 'events.SessionCountSpecial',)},
+    {'app': 'oauth2_provider', 'models': ('oauth2_provider.Application', 'oauth2_provider.AccessToken', 'oauth2_provider.RefreshToken',)},
+)
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'Asia/Kolkata'
