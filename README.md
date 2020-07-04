@@ -2,7 +2,7 @@
 
 <img width="1440" alt="Screenshot 2020-07-04 at 8 38 03 PM" src="https://user-images.githubusercontent.com/23727056/86515413-544c0100-be36-11ea-80bb-f836584da32a.png">
 
-OMG badges is an open-source app for distributing badges to attendees while watching your event's live stream. This app was built for https://dscomg.com and now is open to all communities to utilise in their own meetup/event/etc.
+OMG badges is an open-source gamification framework for distributing badges to attendees while watching your event's live stream. This app was built for https://dscomg.com and now is open to all communities to utilise in their own meetup/event/etc.
 
 What does OMG badges do?
 * Gamification for attendees. It engages attendees as they have more to do than just attending the sessions.
@@ -16,23 +16,24 @@ Documentation is hard. I have tried my best to list everything in detail but ple
 
 - [OMG Badges 🎉](#omg-badges-)
   - [Documentation 📄](#documentation-)
-    - [Getting Started](#getting-started)
-    - [Setting up the app](#setting-up-the-app)
+    - [Getting Started 🏃‍♀️🏃‍♂️](#getting-started-️️)
+    - [Setting up the app 👩‍💻👨‍💻](#setting-up-the-app-)
       - [Setting up Oauth2 for Google Sign-in](#setting-up-oauth2-for-google-sign-in)
       - [Adding badges](#adding-badges)
       - [Adding sessions](#adding-sessions)
       - [Adding Count Special Badges](#adding-count-special-badges)
-    - [API Reference](#api-reference)
+    - [API Reference 🌐](#api-reference-)
       - [Exchanging Access Token](#exchanging-access-token)
       - [Marking Attendance in a session](#marking-attendance-in-a-session)
       - [Fetching Sessions of a user](#fetching-sessions-of-a-user)
       - [Granting Individual Badges](#granting-individual-badges)
       - [Fetching Badges of a user](#fetching-badges-of-a-user)
       - [Fetching Badges/Session using Public profile](#fetching-badgessession-using-public-profile)
-    - [Deployement](#deployement)
+    - [Deployement 📦](#deployement-)
+    - [Known Issues and Notes 🐞](#known-issues-and-notes-)
 
 
-### Getting Started
+### Getting Started 🏃‍♀️🏃‍♂️
 
 1. clone the repo
 2. Go in the repo and setup virtual environment using <br>
@@ -83,7 +84,7 @@ python manage.py runserver
 Runs the backend server at default port ```8000```.<br />
 Open [http://localhost:8000](http://localhost:8000) to view it in the browser.
 
-### Setting up the app
+### Setting up the app 👩‍💻👨‍💻
 
 #### Setting up Oauth2 for Google Sign-in
 1. log into [http://localhost:8000/admin](http://localhost:8000/admin)
@@ -127,7 +128,7 @@ eg- Attended 5 sessions, Attended 20 sessions.
 4. select **count**
 5. select associated badge
 
-### API Reference
+### API Reference 🌐
 
 #### Exchanging Access Token
 ```http
@@ -322,5 +323,13 @@ No Auth needed
 ```email``` is returned in an obscured fashion. This link can be shared by the users on social media and people can visit this link to view the user's badges. 
 
 
-### Deployement 
+### Deployement 📦
 This application was deployed on DigitalOcean for use during our event. You can follow [this article](https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-16-04) for setup and deployments, this should work the same for any cloud service. 
+
+
+### Known Issues and Notes 🐞
+1. Each time a user logs in a new ```access_token``` and ```refresh_token``` is created in the database. They grow to a huge number and takes a lot of space. It's recommended to delete all the tokens from time to time.
+2. If anyone has any solution to this issue (solution - Automatically delete old tokens when new tokens are created) please feel free to fix it and send a PR here. This app depends on [rest-framework-social-oauth2](https://github.com/RealmTeam/django-rest-framework-social-oauth2) for oauth2. 
+
+3. HAVE LOTS OF FUN WHILE HOSTING YOUR NEXT eMEETUP!! ⭐️ this project if you like it :D 
+4. Follow me on [twitter](https://twitter.com/kautukkundan) for more!
