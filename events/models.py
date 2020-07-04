@@ -20,6 +20,7 @@ class BaseModel(models.Model):
 class Session(BaseModel):
     sessionId = models.CharField(max_length=10, null=False, blank=False, primary_key=True)
     name      = models.CharField(max_length=150, null=False, blank=False)
+    track     = models.IntegerField(default=1)
     badge     = models.ForeignKey('badges.Badge', null=True, on_delete=models.SET_NULL)
     start     = models.DateTimeField(null=False)
     end       = models.DateTimeField(null=False)
@@ -41,8 +42,8 @@ class SessionCountSpecial(BaseModel):
 
 
 class PersonSession(BaseModel):
-    user    = models.ForeignKey(User, on_delete=models.CASCADE)
-    session = models.ManyToManyField('Session')
+    user    = models.OneToOneField(User, on_delete=models.CASCADE)
+    session = models.ManyToManyField('Session', related_name="person_session")
 
     def __str__(self):
-        return self.email
+        return self.user.username

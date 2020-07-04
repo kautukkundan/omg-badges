@@ -11,8 +11,8 @@ from core.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/', views.obtain_auth_token),
-    path('api/badges/', include('badges.urls'))
-    # path('api/session/', MarkPresenceForSession.as_view()),
+    path('api/badges/', include('badges.urls')),
+    path('api/sessions/', include('events.urls'))
     # path('api/email_listxyzabc/', EmailList.as_view()),
     # path('api/email_listuuid/', EmailListUUID.as_view()),
 ]
