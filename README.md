@@ -20,20 +20,20 @@ Documentation is hard. I have tried my best to list everything in detail but ple
 
 ### Getting Started
 
-- clone the repo
-- Go in the repo and setup virtual environment using <br>
+1. clone the repo
+2. Go in the repo and setup virtual environment using <br>
 ```python -m venv env``` 
-- Then activate the environment using <br>
-    On Windows
+3. Then activate the environment using <br>
+    - On Windows
 ```source env\Scripts\activate```
-    On MacOS/Linux
+    - On MacOS/Linux
 ```source env/bin/activate```
 - At the root of your project directory <br>
 ```bash 
 pip install -r requirements.txt
 ```
 
-- create a file ```.env``` and copy contents of ```.env_dummy``` to ```.env``` in the same directory
+4. create a file ```.env``` and copy contents of ```.env_dummy``` to ```.env``` in the same directory
 ```
 SECRET_KEY=
 DB_NAME=
@@ -45,20 +45,27 @@ GOOGLE_OAUTH2_KEY=
 GOOGLE_OAUTH2_SECRET=
 PRODUCTION=
 ```
-- You can use [https://djecrety.ir/] to generate your secret key
-- Set ```PRODUCTION = False``` during development in ```.env``` file otherwise enter the db details.
-- Get Google Oauth2 client key and Secret key and enter it here. Follow this for the same https://developers.google.com/identity/protocols/oauth2
+5. You can use [https://djecrety.ir/] to generate your secret key
+6. Set ```PRODUCTION=False``` during development in ```.env``` file otherwise enter the db details.
+7. Get Google Oauth2 client key and Secret key and enter it here. Follow this for the same https://developers.google.com/identity/protocols/oauth2
+8. **Make sure to not have give spaces between KEY=VALUE**
 
-- After the above setup, run <br>
-```python manage.py makemigrations```
-```python manage.py migrate```
+9. After the above setup, run <br>
+```
+python manage.py makemigrations
+python manage.py migrate
+```
 
-- Create superuser <br>
-```python manage.py createsuperuser```
+10. Create superuser <br>
+```
+python manage.py createsuperuser
+```
 make sure to enter all the details including email
 
-- Start the backend server (testing server)
-```python manage.py runserver```
+11. Start the backend server (testing server)
+```
+python manage.py runserver
+```
 Runs the backend server at default port ```8000```.<br />
 Open [http://localhost:8000](http://localhost:8000) to view it in the browser.
 
