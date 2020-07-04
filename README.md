@@ -17,6 +17,11 @@ Documentation is hard. I have tried my best to list everything in detail but ple
 - [OMG Badges 🎉](#omg-badges-)
   - [Documentation 📄](#documentation-)
     - [Getting Started](#getting-started)
+    - [Setting up the app](#setting-up-the-app)
+      - [Setting up Oauth2 for Google Sign-in](#setting-up-oauth2-for-google-sign-in)
+      - [Adding badges](#adding-badges)
+      - [Adding sessions](#adding-sessions)
+      - [Adding Count Special Badges](#adding-count-special-badges)
     - [API Reference](#api-reference)
 
 
@@ -71,5 +76,48 @@ python manage.py runserver
 Runs the backend server at default port ```8000```.<br />
 Open [http://localhost:8000](http://localhost:8000) to view it in the browser.
 
+### Setting up the app
+
+#### Setting up Oauth2 for Google Sign-in
+1. log into [http://localhost:8000/admin](http://localhost:8000/admin)
+2. Go to **DJANGO OAUTH TOOLKIT > Applications**
+3. click **Add Application**
+4. Copy **Client ID** for later use
+5. Click search icon next to user and select your superuser
+6. leave **redirect URIs** > blank
+7. select **Client Type** > public
+8. select **Authorization grant type** > Resource owner password-based
+9. Give whatever name to the application (maybe "Gauth")
+10. It should look something like this after setup.
+    
+<img width="1192" alt="Screenshot 2020-07-04 at 8 51 00 PM" src="https://user-images.githubusercontent.com/23727056/86515649-1cde5400-be38-11ea-9a0f-2a4c05c72227.png">
+
+#### Adding badges
+1. log into [http://localhost:8000/admin](http://localhost:8000/admin)
+2. Go to **BADGES > Badges**
+3. click **Add Badge**
+4. **BadgeId** - give any id to the badge, a short one word description recommended
+5. **Name** - give full name of the badge, It'll be displayed on the app
+6. Select any image for the badge. Recommended square and small size ~70kb
+
+#### Adding sessions
+1. log into [http://localhost:8000/admin](http://localhost:8000/admin)
+2. Go to **EVENTS > Sessions**
+3. click **Add Sessions**
+4. **SessionId** - give any id to the session, a short one word description recommended
+5. **Name** - give full name of the session
+6. **Badge** - associate badge to this session
+7. **Track** - default 1, change this number for multiple parallel tracks.
+8. **start**, **end** - Set start time and end time for the session. **Please be careful while adding these details as badges depends on this**
+
+#### Adding Count Special Badges
+This is used to provide badges when a user attends a set number of sessions. 
+eg- Attended 5 sessions, Attended 20 sessions. 
+
+1. log into [http://localhost:8000/admin](http://localhost:8000/admin)
+2. Go to **EVENTS > Session count specials**
+3. click **Add Session count specials** 
+4. select **count**
+5. select associated badge
 
 ### API Reference
