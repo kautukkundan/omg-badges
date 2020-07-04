@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 import uuid
 
 class BaseModel(models.Model):
@@ -13,41 +15,13 @@ class BaseModel(models.Model):
     class Meta:
         abstract = True
 
-
-class Badge(BaseModel):
-    badgeId = models.CharField(max_length=10, null=False, blank=False, primary_key=True)
-    name    = models.CharField(max_length=150, null=False, blank=False)
-    image   = models.ImageField(upload_to='badge/', null=True)
-
-    def __str__(self):
-        return self.badgeId
+class Profile(BaseModel):
+    id   = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
 
-class Session(BaseModel):
-    sessionId = models.CharField(max_length=10, null=False, blank=False, primary_key=True)
-    name      = models.CharField(max_length=150, null=False, blank=False)
-    badge     = models.ForeignKey(Badge, null=True, on_delete=models.SET_NULL)
+def create_profile(sender, instance, created, **kwargs):  
+    if created:  
+       profile, created = Profile.objects.get_or_create(user=instance)  
 
-    def __str__(self):
-        return self.sessionId
-
-
-class PersonBadge(BaseModel):
-    email = models.CharField(max_length=150, null=False, blank=False, primary_key=True)
-    badge = models.ManyToManyField('Badge')
-
-    def __str__(self):
-        return self.email
-
-
-class PersonSession(BaseModel):
-    email   = models.CharField(max_length=150, null=False, blank=False, primary_key=True)
-    session = models.ManyToManyField('Session')
-
-    def __str__(self):
-        return self.email
-
-
-class EmailUID(BaseModel):
-    id    = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    email = models.CharField(max_length=150, null=False, blank=False)
+post_save.connect(create_profile, sender=User) 
