@@ -1,5 +1,7 @@
 # OMG Badges 🎉
 
+<img width="1440" alt="Screenshot 2020-07-04 at 8 38 03 PM" src="https://user-images.githubusercontent.com/23727056/86515413-544c0100-be36-11ea-80bb-f836584da32a.png">
+
 OMG badges is an open-source app for distributing badges to attendees while watching your event's live stream. This app was built for https://dscomg.com and now is open to all communities to utilise in their own meetup/event/etc.
 
 What does OMG badges do?
@@ -28,12 +30,12 @@ Documentation is hard. I have tried my best to list everything in detail but ple
 ```source env\Scripts\activate```
     - On MacOS/Linux
 ```source env/bin/activate```
-- At the root of your project directory <br>
+4. At the root of your project directory <br>
 ```bash 
 pip install -r requirements.txt
 ```
 
-4. create a file ```.env``` and copy contents of ```.env_dummy``` to ```.env``` in the same directory
+5. create a file ```.env``` and copy contents of ```.env_dummy``` to ```.env``` in the same directory
 ```
 SECRET_KEY=
 DB_NAME=
@@ -45,24 +47,24 @@ GOOGLE_OAUTH2_KEY=
 GOOGLE_OAUTH2_SECRET=
 PRODUCTION=
 ```
-5. You can use [https://djecrety.ir/] to generate your secret key
-6. Set ```PRODUCTION=False``` during development in ```.env``` file otherwise enter the db details.
-7. Get Google Oauth2 client key and Secret key and enter it here. Follow this for the same https://developers.google.com/identity/protocols/oauth2
-8. **Make sure to not have give spaces between KEY=VALUE**
+6. You can use [https://djecrety.ir/] to generate your secret key
+7. Set ```PRODUCTION=False``` during development in ```.env``` file otherwise enter the db details.
+8. Get Google Oauth2 client key and Secret key and enter it here. Follow this for the same https://developers.google.com/identity/protocols/oauth2
+9. **Make sure to not have give spaces between KEY=VALUE**
 
-9. After the above setup, run <br>
+10. After the above setup, run <br>
 ```
 python manage.py makemigrations
 python manage.py migrate
 ```
 
-10. Create superuser <br>
+11. Create superuser <br>
 ```
 python manage.py createsuperuser
 ```
 make sure to enter all the details including email
 
-11. Start the backend server (testing server)
+12. Start the backend server (testing server)
 ```
 python manage.py runserver
 ```
