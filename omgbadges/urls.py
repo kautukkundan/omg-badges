@@ -11,8 +11,8 @@ from core.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/', include('rest_framework_social_oauth2.urls')),
-    path('api/badges/', include('badges.urls')),
-    path('api/sessions/', include('events.urls'))
+    path('api/badges', include('badges.urls')),
+    path('api/sessions', include('events.urls'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

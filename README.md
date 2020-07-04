@@ -27,8 +27,8 @@ Documentation is hard. I have tried my best to list everything in detail but ple
       - [Marking Attendance in a session](#marking-attendance-in-a-session)
       - [Fetching Sessions of a user](#fetching-sessions-of-a-user)
       - [Granting Individual Badges](#granting-individual-badges)
-      - [GFetching Badges of a user](#gfetching-badges-of-a-user)
-      - [Fetching Badges using Public profile](#fetching-badges-using-public-profile)
+      - [Fetching Badges of a user](#fetching-badges-of-a-user)
+      - [Fetching Badges/Session using Public profile](#fetching-badgessession-using-public-profile)
     - [Deployement](#deployement)
 
 
@@ -136,12 +136,12 @@ POST /api/auth/convert-token
 
 | Parameter | Type | Value | Description |
 | :--- | :--- | :--- | :---- |
-| `grant_type` | `string` | `convert_token` | **Required** as it is|
-| `client_id` | `string` | `<Django Oauth Client ID>` | **Required** Copied previously |
-| `backend` | `string` | `google-oauth2` | **Required** as it is |
-| `token` | `string` | `<Google Auth Access Token>` | **Required** Obtained when client side signin using GOauth2 API |
+| `grant_type` | `string` | `convert_token` | as it is |
+| `client_id` | `string` | `<Django-Oauth-Client-ID>` | Copied previously |
+| `backend` | `string` | `google-oauth2` | as it is |
+| `token` | `string` | `<Google-Auth-Access-Token>` | Obtained when client side signin using Google Oauth2 API |
 
-example:
+**example**:
 ```javascript
 {
     "grant_type": "convert_token",
@@ -166,15 +166,160 @@ Save the access_token at the client and use the access token in the header for e
 **Note**
 You will receive a new access_token EACH TIME you login on the client and send request to this API. Make sure to overwrite the access_token with the fresh one every time. Or use the refresh token to get a new token after expiration. Feel free to send a PR to this documentation explaining that. 
 
-#### Marking Attendance in a session 
+#### Marking Attendance in a session
+```http
+POST /api/session
+```
+
+Set this as the header of the request
+
+```Authorization: Bearer <access-token>```
+
+| Parameter | Type | Value | Description |
+| :--- | :--- | :--- | :---- |
+| `track` | `integer` | `<track-value>` | send the track number of session/default 1 |
+
+**example**:
+```javascript
+{
+    "track": 1
+}
+```
+
+**Response**
+```javascript
+{
+    "user": "kautukkundan@gmail.com",
+    "success": true,
+    "badgeEarned": false
+}
+```
+
+```badgeEarned``` parameter will be True/False depending on 
+1. Whether the session has an associated badge or not
+2. Whether the person already has the same badge or not
+This parameter can be used to show a popup notification/toast at the frontend.
 
 #### Fetching Sessions of a user 
+```http
+GET /api/session
+```
+
+Set this as the header of the request
+
+```Authorization: Bearer <access-token>```
+
+**Response**
+```javascript
+{
+    "sessions": [
+        {
+            "sessionId": "D01S01",
+            "name": "Keynote on ML",
+            "start": "2020-07-04T16:44:25+05:30",
+            "end": "2020-07-05T16:44:26+05:30"
+        }
+    ],
+    "uuid": "6179ea9a-363f-4d1f-a597-07715b612c2e"
+}
+```
+
+```uuid``` is returned on every get call session/badges. This UUID can be used to anonymously fetch the public profile of the user.
 
 #### Granting Individual Badges
+```http
+POST /api/badges
+```
 
-#### GFetching Badges of a user 
+Set this as the header of the request
 
-#### Fetching Badges using Public profile 
+```Authorization: Bearer <access-token>```
+
+| Parameter | Type | Value | Description |
+| :--- | :--- | :--- | :---- |
+| `badge` | `string` | `<badge-id>` | send badge ID |
+
+**example**:
+```javascript
+{
+    "badge":"secretBadge1"
+}
+```
+
+**Response**
+```javascript
+{
+    "user": "kautukkundan@gmail.com",
+    "success": true,
+    "badgeEarned": false,
+    "badge": "secretBadge1"
+}
+```
+
+This route can be used to grant badges which are not attached to any particular sessions but are present independently.
+1. Easter Egg
+2. Special Badges for exclusive users
+etc
+
+#### Fetching Badges of a user 
+```http
+GET /api/session
+```
+
+Set this as the header of the request
+
+```Authorization: Bearer <access-token>```
+
+**Response**
+```javascript
+{
+    "badges": [
+        {
+            "badgeId": "D01S01badge",
+            "name": "Watched ML Keynote",
+            "image": "/media/badge/lAWQtaCV_400x400_pOV3u2h.jpg"
+        },
+        {
+            "badgeId": "D01S02badge",
+            "name": "ML Overlord!",
+            "image": "/media/badge/lAWQtaCP_400x400_pOV3u2g.jpg"
+        }
+    ],
+    "uuid": "6179ea9a-363f-4d1f-a597-07715b612c2e"
+}
+```
+
+```uuid``` is returned on every get call session/badges. This UUID can be used to anonymously fetch the public profile of the user.
+
+#### Fetching Badges/Session using Public profile 
+```http
+GET /api/session/collection/<uuid>
+
+GET /api/badges/collection/<uuid>
+```
+
+No Auth needed
+
+**Response**
+```javascript
+{
+    "badges": [
+        {
+            "badgeId": "D01S01badge",
+            "name": "Watched ML Keynote",
+            "image": "/media/badge/lAWQtaCV_400x400_pOV3u2h.jpg"
+        },
+        {
+            "badgeId": "D01S02badge",
+            "name": "ML Overlord!",
+            "image": "/media/badge/lAWQtaCP_400x400_pOV3u2g.jpg"
+        }
+    ],
+    "email": "kau*****@gmail.com"
+}
+```
+
+```email``` is returned in an obscured fashion. This link can be shared by the users on social media and people can visit this link to view the user's badges. 
 
 
 ### Deployement 
