@@ -6,7 +6,6 @@ from django.conf import settings
 from rest_framework import routers
 import rest_framework_social_oauth2.urls
 
-from core.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
