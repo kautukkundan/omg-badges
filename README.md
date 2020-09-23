@@ -65,7 +65,10 @@ PRODUCTION=
 ```
 6. You can use [https://djecrety.ir/] to generate your secret key
 7. Set ```PRODUCTION=False``` during development in ```.env``` file otherwise enter the db details. If you wish to use SQLite3 for production db, in that case also leave ```PRODUCTION=False``` and ignore any other DB_* fields. Keep in mind that the app will run in debug mode if ```PRODUCTION=False```. 
-8. Get Google Oauth2 client key and Secret key and enter it here. Follow this for the same https://developers.google.com/identity/protocols/oauth2
+8. Get Google Oauth2 client key and Secret key and enter it here. Follow this for the same https://developers.google.com/identity/sign-in/web/sign-in
+
+read more about Google auth here - https://developers.google.com/identity/protocols/oauth2
+
 9. **Make sure to not have give spaces between KEY=VALUE**
 
 10. After the above setup, run <br>
