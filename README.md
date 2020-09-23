@@ -35,6 +35,9 @@ Documentation is hard. I have tried my best to list everything in detail but ple
 
 ### Getting Started 🏃‍♀️🏃‍♂️
 
+**NOTE**:
+This application relies on "Google-Sign-In" for authorization. The JWT token granted by Google is exchanged for a native access token which also signs up the user here and gets their identity. The access token is then used as a Bearer token to interact with the application. So, your client must support Google sign-in. It's easy, read on :) 
+
 1. clone the repo
 2. Go in the repo and setup virtual environment using <br>
 ```python -m venv env``` 
