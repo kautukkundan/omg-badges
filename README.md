@@ -108,6 +108,10 @@ Open [http://localhost:8000](http://localhost:8000) to view it in the browser.
 5. **Name** - give full name of the badge, It'll be displayed on the app
 6. Select any image for the badge. Recommended square and small size ~70kb
 
+You can use the badges in 2 ways 
+1. **Link badges to session** - This can be used as an attendance system, simply send the trackId from client and the app will automatically grant the badge linked to the session based on the current time. This time management is done server side. 
+2. **Allot individual badges** - You can grant individual badges too when a user performs a task, finds an easter egg, or clicks a link. Use the badgeId to make the call to grant individual badges. This badge may or may not be linked to a session.
+
 #### Adding sessions
 1. log into [http://localhost:8000/admin](http://localhost:8000/admin)
 2. Go to **EVENTS > Sessions**
