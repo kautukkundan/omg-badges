@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  api:
+    build: .
+    ports:
+      - "5000:8000"
+    volumes:
+      - ./databases:/code/databases
+      - ./media:/code/media

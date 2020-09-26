@@ -1,20 +1,20 @@
 from .base import *
+import mimetypes
+mimetypes.init()
+mimetypes.types_map['.css'] =  'text/css'
 
 DEBUG = False
-ALLOWED_HOSTS = ['localhost', '134.209.150.112', 'badges.dscomg.com',]
+ALLOWED_HOSTS = ['localhost', 'badges.dscnitrourkela.tech', 'live.dscnitrourkela.tech',]
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:8080',
-    'https://dscomg.com',
+    'https://badges.dscnitrourkela.tech',
+    'https://live.dscnitrourkela.tech'
 ]
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD':config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT')
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'databases', 'db.sqlite3'),
     }
 }
