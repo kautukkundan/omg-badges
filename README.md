@@ -2,7 +2,7 @@
 
 <img width="1440" alt="Screenshot 2020-07-04 at 8 38 03 PM" src="https://user-images.githubusercontent.com/23727056/86515413-544c0100-be36-11ea-80bb-f836584da32a.png">
 
-OMG badges is an open-source gamification framework for distributing badges to attendees while watching your event's live stream. This app was built for https://dscomg.com and now is open to all communities to utilise in their own meetup/event/etc.
+OMG badges is an open-source gamification framework for distributing badges to attendees while they are  watching your event's live stream. This app was built for https://dscomg.com and now is open to all communities to utilise in their own meetup/event/etc.
 
 What does OMG badges do?
 * Gamification for attendees. It engages attendees as they have more to do than just attending the sessions.
