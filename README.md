@@ -1,3 +1,5 @@
+Logr - An Amazing Project
+
 # OMG Badges 🎉
 
 <img width="1440" alt="Screenshot 2020-07-04 at 8 38 03 PM" src="https://user-images.githubusercontent.com/23727056/86515413-544c0100-be36-11ea-80bb-f836584da32a.png">
