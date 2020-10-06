@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  api:
+    build: .
+    ports:
+      - "5000:8000"
+    volumes:
+      - ./databases:/code/databases
+      - ./media:/code/media 
+
+#Media and Database added a volume mount from a folder on the machine running the image. 
+#This helps to make sure on docker image update, the data is preserved and only backend code changes 
