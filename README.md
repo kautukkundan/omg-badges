@@ -138,7 +138,7 @@ eg- Attended 5 sessions, Attended 20 sessions.
 4. select **count**
 5. select associated badge
 
-### API Reference 🌐
+### Application programming interface Reference 🌐
 
 #### Exchanging Access Token
 ```http
