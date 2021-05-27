@@ -1,0 +1,6 @@
+# To make sure DB and media and static files are not tampered for update in container. It would be mounted as a volume
+#If static files are updated, RUN python manage.py collectstatic in docker container
+db.sqlite3
+databases/db.sqlite3
+media/
+static/ 
